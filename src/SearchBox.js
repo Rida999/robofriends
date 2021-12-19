@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function SearchBox({onSearchChange}) {
     return (
-        <div className='pa2'>
+        <div className='pa2 bb bw1'>
             <input
             type='search'
             placeholder='search robots' 

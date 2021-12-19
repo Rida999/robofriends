@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import CardList from './CardList';
 import SearchBox from './SearchBox';
 import './App.css';
+import Scroll from './Scroll';
 
 class App extends Component{
     constructor() {
@@ -38,7 +39,7 @@ class App extends Component{
             <div className='tc'>
                 <h1 className='f1'>RoboFriends</h1>
                 <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
-                <div className='bt bw1'>
+                <div>
                     <h1>Loading...</h1>
                 </div>
             </div>
@@ -46,12 +47,12 @@ class App extends Component{
         }
         else{
             return (
-                <div className='tc'>
+                <div className='tc' style={{height:"100vh",overflow:"hidden"}}>
                     <h1 className='f1'>RoboFriends</h1>
                     <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
-                    <div className='bt bw1'>
+                    <Scroll>
                         <CardList robots={filteredRobots}/>
-                    </div>
+                    </Scroll>
                 </div>
             )
             }
