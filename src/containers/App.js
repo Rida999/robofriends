@@ -39,7 +39,7 @@ class App extends Component{
             return (
             <div className='tc'>
                 <div className='bb bw1'>
-                    <h1 className='f2'>RoboFriends</h1>
+                    <h1 className='header'>RoboFriends</h1>
                     <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
                 </div>
                 <div>
@@ -52,7 +52,7 @@ class App extends Component{
             return (
                 <div className='tc' style={{height:"100vh",overflow:"hidden"}}>
                     <div className='bb bw1'>
-                        <h1 className='f2'>RoboFriends</h1>
+                        <h1 className='header'>RoboFriends</h1>
                         <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
                     </div>
                     <Scroll>
