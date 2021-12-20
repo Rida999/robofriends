@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
-import CardList from './CardList';
-import SearchBox from './SearchBox';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
 import './App.css';
-import Scroll from './Scroll';
+import Scroll from '../components/Scroll';
+import ErrorBoundry from '../components/ErrorBoundry';
 
 class App extends Component{
     constructor() {
@@ -21,7 +22,7 @@ class App extends Component{
         .then(users=>{
             setTimeout(() => {
             this.setState({robots:users})
-        }, 2000)
+        }, 1000)
         });
         
     }
@@ -34,11 +35,13 @@ class App extends Component{
         const filteredRobots=this.state.robots.filter((robot)=>{
             return robot.name.toLowerCase().includes(this.state.SearchBox.toLowerCase());
         });
-        if(this.state.robots.length===0){
+        if(!this.state.robots.length){
             return (
             <div className='tc'>
-                <h1 className='f1'>RoboFriends</h1>
-                <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
+                <div className='bb bw1'>
+                    <h1 className='f1'>RoboFriends</h1>
+                    <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
+                </div>
                 <div>
                     <h1>Loading...</h1>
                 </div>
@@ -48,10 +51,14 @@ class App extends Component{
         else{
             return (
                 <div className='tc' style={{height:"100vh",overflow:"hidden"}}>
-                    <h1 className='f1'>RoboFriends</h1>
-                    <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
+                    <div className='bb bw1'>
+                        <h1 className='f1'>RoboFriends</h1>
+                        <SearchBox onSearchChange={this.onSearchChange} /> {/*this mean app because app is an object*/}
+                    </div>
                     <Scroll>
-                        <CardList robots={filteredRobots}/>
+                        <ErrorBoundry>
+                            <CardList robots={filteredRobots}/>
+                        </ErrorBoundry>
                     </Scroll>
                 </div>
             )
